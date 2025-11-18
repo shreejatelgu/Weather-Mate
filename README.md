@@ -1,73 +1,74 @@
-# React + TypeScript + Vite
+# 🌦️ WeatherMate  
+### *Your Smart Personal Weather Companion*
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+WeatherMate is a clean and modern weather dashboard that automatically detects your location and displays real-time weather conditions with an elegant UI. Built using **React, TypeScript, TailwindCSS, ShadCN UI, and React Query**, it delivers fast, accurate, and smooth weather updates.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## ✨ Features
 
-## React Compiler
+- 📍 **Auto Location Detection** (via browser geolocation)
+- 🌤️ **Current Weather Details**
+  - Temperature  
+  - Feels Like  
+  - Humidity  
+  - Wind Speed  
+  - Weather Conditions
+- 📅 **5-Day / 3-Hour Forecast**
+- 🗺️ **Reverse Geocoding** → Get city, state, country automatically
+- ⚡ **Instant Refresh** with loading animations
+- 🎨 **Aesthetic UI** (Tailwind + ShadCN)
+- 🧊 **Smooth Skeleton Loading Screens**
+- ❌ **Friendly Error Handling** for:
+  - Location disabled
+  - Network issues
+  - API errors
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+---
 
-## Expanding the ESLint configuration
+## 🛠️ Tech Stack
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+| Technology | Purpose |
+|-----------|---------|
+| **React + TypeScript** | Core UI logic |
+| **Vite** | Fast development environment |
+| **React Query** | Data fetching + caching |
+| **TailwindCSS** | Styling |
+| **ShadCN UI** | Prebuilt components |
+| **Lucide Icons** | Icons |
+| **OpenWeather API** | Weather, forecast, and geolocation |
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+---
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+## 📁 Project Structure
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+```bash
+src/
+│── api/
+│   ├── weather.ts          # OpenWeather API wrapper
+│   ├── config.ts           # API URLs + keys
+│   └── types.ts            # TypeScript interfaces
+│
+│── hooks/
+│   ├── use-geolocation.ts  # Browser geolocation logic
+│   └── use-weather.ts      # React Query hooks
+│
+│── components/
+│   ├── current-weather.tsx
+│   ├── forecast.tsx
+│   ├── loading-skeleton.tsx
+│   └── ui/                 # ShadCN UI Components
+│
+└── pages/
+    └── weather-dashboard.tsx
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+🌍 API Endpoints Used
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+Current Weather:
+/weather
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+5-Day Forecast:
+/forecast
+
+Reverse Geocoding:
+/geo/1.0/reverse
